@@ -1,1 +1,5 @@
-# Projeto_GDI
+## Alunos:
+  - Mikael
+  - Eliezer
+  - Pedro
+  - Rafa
