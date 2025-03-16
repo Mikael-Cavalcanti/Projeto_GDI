@@ -43,8 +43,8 @@ CREATE TABLE ITEM (
 );
 
 CREATE TABLE INVENTARIO_TEM (
-  ID_PERSONAGEM VARCHAR(11) REFERENCES PERSONAGEM (ID)
-  ID_ITEM VARCHAR(11) REFERENCES ITEM (ID)
+  ID_PERSONAGEM VARCHAR(11) REFERENCES PERSONAGEM (ID),
+  ID_ITEM VARCHAR(11) REFERENCES ITEM (ID),
   QTDE INTEGER DEFAULT 1 CHECK (QTDE > 0),
   CONSTRAINT PK_INVENTARIO_TEM PRIMARY KEY (ID_PERSONAGEM, ID_ITEM)
 );
@@ -150,4 +150,24 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('Erro ao excluir ' || tabela.table_name || ': ' || SQLERRM);
     END;
   END LOOP;
+END;
+
+--Função: Obter Atributos do Personagem
+CREATE OR REPLACE FUNCTION ObterAtributosPersonagem (ID_PERSONAGEM IN VARCHAR2)
+RETURN VARCHAR2
+IS
+    Atributos VARCHAR2(4000);
+BEGIN
+    SELECT 
+        'Força: ' || TO_CHAR(ATR_FOR) || ', ' ||
+        'Destreza: ' || TO_CHAR(ATR_DES) || ', ' ||
+        'Inteligência: ' || TO_CHAR(ATR_INT) || ', ' ||
+        'Constituição: ' || TO_CHAR(ATR_CON) || ', ' ||
+        'Sabedoria: ' || TO_CHAR(ATR_SAB) || ', ' ||
+        'Carisma: ' || TO_CHAR(ATR_CAR)
+    INTO Atributos
+    FROM PERSONAGEM
+    WHERE ID = ID_PERSONAGEM;
+
+    RETURN Atributos;
 END;
