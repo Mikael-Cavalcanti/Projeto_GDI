@@ -21,7 +21,6 @@
 - ### Entidades Fracas
 
 >Inventario (<ins>charID</ins>, pesoTotal*)<br>
->
     >>>charID -> Personagem (charID)<br>
 ---
 - ### Heranças
@@ -39,7 +38,7 @@
     >>>charID -> Personagem (charID)<br>
 ---
 - ### Entidades Associativas<br>
-
+>
 >Mestra (<ins>hostID</ins>, <ins>vgID</ins>, <ins>sessao</ins>)<br>
     >>>hostID -> Mestre (userID)<br>
     >>>vgID -> Jogo (vgID)<br>
