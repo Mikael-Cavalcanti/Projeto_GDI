@@ -5,61 +5,61 @@
 >Mapa (<ins>mapID</ins>, imagem)<br>
 >Jogo (<ins>vgID</ins>, vgDesc)<br>
 >Personagem (<ins>charID</ins>, leaderID, nome, atrFOR, atrDES, atrINT, atrCON, atrSAB, atrCAR)<br>
-    >>>leaderID -> Personagem (charID)<br>
+&emsp;&emsp;leaderID -> Personagem (charID)<br>
 >
 > prof_ARMA (<ins>charID</ins>, <ins>arma</ins>)<br>
-    >>>charID -> Personagem (charID)<br>
+&emsp;&emsp;charID -> Personagem (charID)<br>
 >
 >prof_ARMAD (<ins>charID</ins>, <ins>armadura</ins>)<br>
-    >>>charID -> Personagem (charID)<br>
+&emsp;&emsp;charID -> Personagem (charID)<br>
 >
 >prof_IDIOMA (<ins>charID</ins>, <ins>idioma</ins>)<br>
-    >>>charID -> Personagem (charID)<br>
+&emsp;&emsp;charID -> Personagem (charID)<br>
 >
 >Item (<ins>itemID</ins>, itemDesc, peso)<br>
 ---
 - ### Entidades Fracas
 
 >Inventario (<ins>charID</ins>, pesoTotal*)<br>
-    >>>charID -> Personagem (charID)<br>
+&emsp;&emsp;charID -> Personagem (charID)<br>
 ---
 - ### Heranças
 
 >Jogador (<ins>userID</ins>)<br>
-    >>>userID -> Usuario (userID)<br>
+&emsp;&emsp;userID -> Usuario (userID)<br>
 >
 >Mestre (<ins>userID</ins>)<br>
-    >>>userID -> Usuario (userID)<br>
+&emsp;&emsp;userID -> Usuario (userID)<br>
 >
 >PC (<ins>charID</ins>)<br>
-    >>>charID -> Personagem (charID)<br>
+&emsp;&emsp;charID -> Personagem (charID)<br>
 >
 >NPC (<ins>charID</ins>)<br>
-    >>>charID -> Personagem (charID)<br>
+&emsp;&emsp;charID -> Personagem (charID)<br>
 ---
 - ### Entidades Associativas<br>
 >
 >Mestra (<ins>hostID</ins>, <ins>vgID</ins>, <ins>sessao</ins>)<br>
-    >>>hostID -> Mestre (userID)<br>
-    >>>vgID -> Jogo (vgID)<br>
+&emsp;&emsp;hostID -> Mestre (userID)<br>
+&emsp;&emsp;vgID -> Jogo (vgID)<br>
 ---
 - ### Relacionamentos (Binários N:N e N-ários)<br>
 
 >Aparece (<ins>mapID</ins>, <ins>vgID</ins>)<br>
-    >>>mapID -> Mapa (mapID)<br>
-    >>>vgID -> Jogo (vgID)<br>
+&emsp;&emsp;mapID -> Mapa (mapID)<br>
+&emsp;&emsp;vgID -> Jogo (vgID)<br>
 >
 >Joga (<ins>vgID</ins>, <ins>pcID</ins>, <ins>sessaoJogo</ins>, playerID!)<br>
-    >>>vgID -> Jogo (vgID)<br>
-    >>>pcID -> PC (charID)<br>
-    >>>playerID -> Jogador (userID)<br>
+&emsp;&emsp;vgID -> Jogo (vgID)<br>
+&emsp;&emsp;pcID -> PC (charID)<br>
+&emsp;&emsp;playerID -> Jogador (userID)<br>
 >
 >Participa (<ins>hostID</ins>, <ins>vgID</ins>, <ins>sessao</ins>, <ins>npcID</ins>)<br>
-    >>>(hostID , vgID , sessao) -> Mestra (hostID , vgID, sessão)<br>
-    >>>npcID -> NPC (charID)<br>
+&emsp;&emsp;(hostID , vgID , sessao) -> Mestra (hostID , vgID, sessão)<br>
+&emsp;&emsp;npcID -> NPC (charID)<br>
 >
 >Tem/Possui (<ins>invID</ins>, <ins>itemID</ins>, qtd)<br>
-    >>>invID -> Inventario (charID)<br>
-    >>>itemID -> Item (itemID)<br>
+&emsp;&emsp;invID -> Inventario (charID)<br>
+&emsp;&emsp;itemID -> Item (itemID)<br>
 <br>
 ---
