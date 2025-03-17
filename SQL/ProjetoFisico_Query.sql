@@ -49,14 +49,14 @@ WHERE
         WHERE P1.ID = 'P3'
     );
 
---subconsulta do tipo tabela
---Projete o nome dos personagens que possuem inteligência e sabedoria maior que o personagem de ID P3.
+--SUBCONSULTA DO TIPO TABELA
+--Projete o nome dos personagens que jogam no jogo J1.
 SELECT NOME
-FROM PERSONAGEM 
-WHERE (ATR_INT, ATR_SAB) > (
-    SELECT ATR_INT, ATR_SAB
-    FROM PERSONAGEM
-    WHERE ID = 'P3');
+FROM PERSONAGEM
+WHERE ID IN (
+    SELECT PC.ID_PERSONAGEM
+    FROM PC INNER JOIN JOGA J ON (PC.ID_PERSONAGEM = J.ID_PERSONAGEM)
+    WHERE ID_JOGO = 'J1');
 
 -- OPERAÇÃO DE CONJUNTO 
 -- Obter todos os personagens que falam um idioma específico
