@@ -31,6 +31,22 @@ SELECT AVG(QTD)
     )
 );
 
+-- SUBCONSULTA DO TIPO LINHA 
+-- Identifica os personagens que fazem parte do mesmo clã (têm o mesmo líder) e falam o mesmo idioma que um personagem específico
+SELECT P.ID
+FROM PERSONAGEM P
+INNER JOIN PROFICIENCIA_IDIOMA PI 
+    ON PI.ID_PERSONAGEM = P.ID 
+WHERE 
+    P.ID_LIDER IS NOT NULL AND 
+    (P.ID_LIDER, PI.IDIOMA) = (
+        SELECT P1.ID_LIDER, PI1.IDIOMA 
+        FROM PERSONAGEM P1 
+        INNER JOIN PROFICIENCIA_IDIOMA PI1 
+            ON PI1.ID_PERSONAGEM = P1.ID 
+        WHERE P1.ID = 'P3'
+    );
+
 --subconsulta do tipo tabela
 --Projete o nome dos personagens que possuem inteligência e sabedoria maior que o personagem de ID P3.
 SELECT NOME
@@ -39,3 +55,16 @@ WHERE (ATR_INT, ATR_SAB) > (
     SELECT ATR_INT, ATR_SAB
     FROM PERSONAGEM
     WHERE ID = 'P3');
+
+-- OPERAÇÃO DE CONJUNTO 
+-- Obter todos os personagens que falam um idioma específico
+SELECT P.ID, P.NOME
+FROM PERSONAGEM P
+
+INTERSECT 
+
+SELECT P.ID, P.NOME 
+FROM PERSONAGEM P
+INNER JOIN PROFICIENCIA_IDIOMA PI 
+    ON PI.ID_PERSONAGEM = P.ID 
+WHERE PI.IDIOMA = 'Comum';
