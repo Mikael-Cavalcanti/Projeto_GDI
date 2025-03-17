@@ -11,11 +11,13 @@ ORDER BY TOTAL_MEMBROS DESC;
 --Anti-junção
 
 --Junção interna
---Projete o ID dos personagens que têm uma espada curta.
-SELECT ID_PERSONAGEM 
-FROM INVENTARIO_TEM IT 
-INNER JOIN ITEM I ON (IT.ID_ITEM = I.ID)
-WHERE DESCRICAO = 'Espada Curta';
+--Projetar o nome dos personagens que jogam no jogo J1.
+SELECT NOME
+FROM PERSONAGEM
+WHERE ID IN (SELECT PC.ID_PERSONAGEM
+			 FROM PC 
+			 INNER JOIN JOGA J ON (PC.ID_PERSONAGEM = J.ID_PERSONAGEM)
+			 WHERE ID_JOGO = 'J1');
 
 --subconsulta do tipo escalar
 --Projete o ID dos personagens que tem a quantidade de proficiências de idioma igual ou maior que a média de proficiências.
