@@ -142,9 +142,9 @@ BEGIN
 END;
 
 -- PROCEDIMENTO QUE DELETA TODOS OS DADOS DO BANCO
+PROCEDURE LimparBanco IS
 BEGIN
-  FOR tabela IN (SELECT table_name FROM user_tables) 
-  LOOP
+  FOR tabela IN (SELECT table_name FROM user_tables) LOOP
     BEGIN
       EXECUTE IMMEDIATE 'DROP TABLE ' || tabela.table_name || ' CASCADE CONSTRAINTS';
     EXCEPTION
@@ -153,6 +153,7 @@ BEGIN
     END;
   END LOOP;
 END;
+/
 
 --Função: Obter Atributos do Personagem
 CREATE OR REPLACE FUNCTION ObterAtributosPersonagem (ID_PERSONAGEM IN VARCHAR2)
