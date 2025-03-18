@@ -8,7 +8,15 @@ GROUP BY P.ID_LIDER
 HAVING COUNT(*) >= 1
 ORDER BY TOTAL_MEMBROS DESC;
 
---Anti-junção
+--Anti-junção (Usando NOT EXISTS)
+-- Exibir nome e Id do personagens que não são NPCs
+SELECT P.NOME, P.ID
+FROM PERSONAGEM P
+WHERE NOT EXISTS (
+  SELECT *
+  FROM NPC N
+  WHERE N.ID_PERSONAGEM = P.ID
+);
 
 --Junção interna
 --Projetar o nome dos personagens que jogam no jogo J1.
