@@ -18,6 +18,18 @@ WHERE NOT EXISTS (
   WHERE N.ID_PERSONAGEM = P.ID
 );
 
+-- SEMI-JUNÇÃO
+-- Verifica e, caso tenha, projeta ID dos personagens com ao menos um tipo de item com peso menor que 3,5
+SELECT T.ID_PERSONAGEM 
+FROM INVENTARIO_TEM T 
+WHERE EXISTS (
+    SELECT *
+    FROM ITEM I 
+    WHERE 
+        I.ID_ITEM = T.ID_ITEM AND
+        I.PESO < 3.5
+);
+
 --Junção interna
 --Projetar o nome dos personagens que jogam no jogo J1.
 SELECT NOME
@@ -26,6 +38,14 @@ WHERE ID IN (SELECT PC.ID_PERSONAGEM
 			 FROM PC 
 			 INNER JOIN JOGA J ON (PC.ID_PERSONAGEM = J.ID_PERSONAGEM)
 			 WHERE ID_JOGO = 'J1');
+
+-- JUNÇÃO EXTERNA
+-- Projeta ID de usuário dos mestres atualmente ativos, que não estão controlando quaisquer NPCs 
+
+SELECT  M.ID_MESTRE
+FROM  MESTRA M  LEFT OUTER JOIN
+      NPC_PARTICIPA P  ON  (M.SESSAO = P.SESSAO)
+WHERE  P.SESSAO  IS NULL;
 
 --subconsulta do tipo escalar
 --Projete o ID dos personagens que tem a quantidade de proficiências de idioma igual ou maior que a média de proficiências.
